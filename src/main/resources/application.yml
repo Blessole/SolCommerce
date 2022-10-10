@@ -1,0 +1,20 @@
+spring:
+  jpa:
+    database: postgresql
+    hibernate:
+#      database-platform: org.hibernate.dialect.PostgresSQLDialect
+      ddl-auto: update
+
+    show-sql: true
+
+  datasource:
+    hikari:
+      maximum-pool-size: 4
+    url: jdbc:postgresql://localhost:5432/solCommerce
+    username: postgres
+    password:
+    driver-class-name: org.postgresql.Driver
+
+#sql:
+#  init:
+#    platform: postgres
