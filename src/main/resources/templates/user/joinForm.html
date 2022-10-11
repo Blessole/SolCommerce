@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="container">
+        <form method="post" th:action="@{/users/join}" th:object="${userDto}">
+            <span>회원가입</span>
+            <div>
+                <label th:for="username">아이디</label><input type="text" th:field="*{username}" id="username">
+                <label th:for="password">비밀번호</label><input type="password" th:field="*{password}" id="password">
+                <label th:for="passwordCheck">비밀번호 확인</label><input type="password" th:field="*{passwordCheck}" id="passwordCheck">
+                <label th:for="name">이름</label><input type="text" th:field="*{name}" id="name">
+                <label th:for="searchAddress">주소</label><input type="text" th:field="*{city}" id="searchAddress" onclick="findAdd()">
+                <button onclick="findAdd()">우편번호 찾기</button>
+                <label th:for="detailAddress">상세주소</label><input type="text" th:field="*{detail}" id="detailAddress">
+                <label th:for="zipcode">우편번호</label><input type="text" th:field="*{zipcode}" id="zipcode">
+            </div>
+            <a th:href="@{/}">취소</a>
+            <input type="submit" value="가입">
+        </form>
+        <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+        <script>
+            function findAdd(){
+                new daum.Postcode({
+                    oncomplete: function(data) {
+                        let addr="";
+
+                        if (data.userSelectedType === 'R') {
+                            addr = data.roadAddress;
+                        } else {
+                            addr = data.jibunAddress;
+                        }
+                        // 우편번호 및 주소 정보를 필드에 넣기
+                        document.getElementById('searchAddress').value = addr;
+                        document.getElementById('zipcode').value = data.zonecode;
+
+                        // 커서를 상세주소 필드로 이동
+                        document.getElementById('detailAddress').focus();
+                    }
+                }).open();
+            };
+        </script>
+    </div>
+</body>
+</html>
