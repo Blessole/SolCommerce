@@ -1,5 +1,6 @@
 HELP.md
 .gradle
+*.yml
 build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
@@ -18,6 +19,9 @@ bin/
 !**/src/test/**/bin/
 
 ### IntelliJ IDEA ###
+**/src/main/resources/application.yml
+application.yml
+
 .idea
 *.iws
 *.iml
