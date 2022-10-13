@@ -24,6 +24,7 @@ public class Address {
     // JPA 스펙상, @Entity나 @Embeddable 타입은 기본 생성자를 public 또는 protected로 설정해야함(public보단 protected로 만드는게 더 안전)
     protected Address(){}
 
+    @Builder
     public Address(String city, String detail, String zipcode) {
         this.city = city;
         this.detail = detail;

@@ -19,7 +19,7 @@ public class User {
     private Long id;
 
     @NotEmpty
-    @UniqueElements
+    @Column(unique = true)
     private String username;
 
     @NotEmpty
