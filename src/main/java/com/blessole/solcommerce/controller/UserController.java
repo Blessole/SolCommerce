@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,7 +21,7 @@ public class UserController {
 
     private final UserService userService;
 
-    @GetMapping("/join")
+    @GetMapping("/new")
     public ModelAndView joinForm(){
 
         ModelAndView joinMV = new ModelAndView();
@@ -29,9 +30,12 @@ public class UserController {
         return joinMV;
     }
 
-    @PostMapping("/join")
-    public Map<String, Object> joinAction(@ModelAttribute UserSaveReqDto userDto){
+    @PostMapping("/new")
+    public Map<String, Object> joinAction(@RequestBody UserSaveReqDto userDto){
         Map<String, Object> map = new HashMap<>();
+
+
+        System.out.println("보자보자 : " + userDto.getName());
 
         Address address = new Address(userDto.getCity(), userDto.getDetail(), userDto.getZipcode());
         if (userDto.getPassword().equals(userDto.getPasswordCheck())){
