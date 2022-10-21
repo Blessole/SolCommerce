@@ -34,9 +34,6 @@ public class UserController {
     public Map<String, Object> joinAction(@RequestBody UserSaveReqDto userDto){
         Map<String, Object> map = new HashMap<>();
 
-
-        System.out.println("보자보자 : " + userDto.getName());
-
         Address address = new Address(userDto.getCity(), userDto.getDetail(), userDto.getZipcode());
         if (userDto.getPassword().equals(userDto.getPasswordCheck())){
             log.info("비밀번호 일치");
